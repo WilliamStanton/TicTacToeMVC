@@ -8,8 +8,6 @@ public class TicTacToeWebApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(TicTacToeWebApplication.class, args);
-
-
     }
 
 }

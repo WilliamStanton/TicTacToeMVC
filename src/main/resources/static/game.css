@@ -17,33 +17,49 @@ button {
 .gameParent {
     /* Active Game CSS */
     .activeGame {
-        /* Game Board */
-        .boardParent {
-            padding: 12px;
-            width: min-content;
 
-            /* Game Board Row */
-            .boardRow {
-                display: flex;
-                width: max-content;
-
-                .boardSpot {
-                    border: 1px solid transparent;
-                    padding: 16px;
-                    width: 100px;
-                    height: 100px;
-                    font-size: 32px;
-                }
-
-                .taken {
-                    background-color: lightskyblue;
-                }
-            }
-        }
     }
 
     /* Inactive Game CSS */
     .inactiveGame {
 
+    }
+
+    /* Game Board */
+    .boardParent {
+        padding: 12px;
+        width: min-content;
+
+        /* Game Board Row */
+        .boardRow {
+            display: flex;
+            width: max-content;
+
+            .boardSpot {
+                border: 1px solid transparent;
+                padding: 16px;
+                width: 100px;
+                height: 100px;
+                font-size: 32px;
+                background-color: #bebcbc;
+
+                .disable {
+                    cursor: not-allowed;
+                }
+            }
+
+            .taken {
+                font-weight: 600;
+                cursor: not-allowed;
+            }
+
+            .O {
+                background-color: crimson;
+            }
+
+            .X {
+                background-color: dodgerblue;
+            }
+        }
     }
 }
