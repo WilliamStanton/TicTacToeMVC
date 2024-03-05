@@ -11,53 +11,58 @@
 <body>
     <!-- Game Info -->
     <div class="gameParent">
-        <!-- Active Game -->
-        <div class="activeGame" th:if="${status.isActive}">
-            <h1><span th:text="${player.getNextPlayer}"> </span>, it is your turn!</h1>
+        <div class="gameHead">
+            <h1>Tic Tac Toe Game</h1>
         </div>
-
-        <!-- Inactive Game -->
-        <div class="inactiveGame" th:if="${!status.isActive}">
-            <h1>Game over..</h1>
-
-            <div class="winner" th:if="${status.isWon}">
-                <p>Winner: <span th:text="${status.gameStatus.winner.player.name}"></span></p>
+        <div class="gameInfo">
+            <!-- Active Game -->
+            <div class="activeGame" th:if="${status.isActive}">
+                <h1><span th:text="${player.getNextPlayer}"></span>, it's your turn!</h1>
             </div>
-            <div class="tie" th:if="${status.isTie}">
-                <p>Tie!</p>
-            </div>
-            <form action="/restart" method="post">
-                <button type="submit">Start new game</button>
-            </form>
-        </div>
 
-        <!-- Game Board -->
-        <div class="boardParent">
-            <div class="boardRow">
-                <div th:each="b : ${board[0]}">
-                    <form action="/" method="post">
-                        <input type="text" th:value="${b.id}" name="id" hidden>
-                        <button th:type="${status.isActive ? 'submit' : 'button'}" class="boardSpot" th:id="${b.id}" th:if="${b.player.name} == null"></button>
-                    </form>
-                    <button class="boardSpot taken" th:classappend="${b.player.symbol}" th:id="${b.id}" th:if="${b.player.name} != null" th:text="${b.player.symbol}"></button>
+            <!-- Inactive Game -->
+            <div class="inactiveGame" th:if="${!status.isActive}">
+                <h1>Game over..</h1>
+
+                <div class="winner" th:if="${status.isWon}">
+                    <p>Winner: <span th:text="${status.gameStatus.winner.player.name}"></span></p>
                 </div>
-            </div>
-            <div class="boardRow">
-                <div th:each="b : ${board[1]}">
-                    <form action="/" method="post">
-                        <input type="text" th:value="${b.id}" name="id" hidden>
-                        <button th:type="${status.isActive ? 'submit' : 'button'}" class="boardSpot" th:id="${b.id}" th:if="${b.player.name} == null"></button>
-                    </form>
-                    <button class="boardSpot taken" th:classappend="${b.player.symbol}" th:id="${b.id}" th:if="${b.player.name} != null" th:text="${b.player.symbol}"></button>
+                <div class="tie" th:if="${status.isTie}">
+                    <p>Tie!</p>
                 </div>
+                <form action="/restart" method="post">
+                    <button class="newBtn" type="submit">Start new game</button>
+                </form>
             </div>
-            <div class="boardRow">
-                <div th:each="b : ${board[2]}">
-                    <form action="/" method="post">
-                        <input type="text" th:value="${b.id}" name="id" hidden>
-                        <button th:type="${status.isActive ? 'submit' : 'button'}" class="boardSpot" th:id="${b.id}" th:if="${b.player.name} == null"></button>
-                    </form>
-                    <button class="boardSpot taken" th:classappend="${b.player.symbol}" th:id="${b.id}" th:if="${b.player.name} != null" th:text="${b.player.symbol}"></button>
+
+            <!-- Game Board -->
+            <div class="boardParent">
+                <div class="boardRow">
+                    <div th:each="b : ${board[0]}">
+                        <form action="/" method="post">
+                            <input type="text" th:value="${b.id}" name="id" hidden>
+                            <button th:type="${status.isActive ? 'submit' : 'button'}" class="boardSpot" th:id="${b.id}" th:if="${b.player.name} == null"></button>
+                        </form>
+                        <button class="boardSpot taken" th:classappend="${b.player.symbol}" th:id="${b.id}" th:if="${b.player.name} != null" th:text="${b.player.symbol}"></button>
+                    </div>
+                </div>
+                <div class="boardRow">
+                    <div th:each="b : ${board[1]}">
+                        <form action="/" method="post">
+                            <input type="text" th:value="${b.id}" name="id" hidden>
+                            <button th:type="${status.isActive ? 'submit' : 'button'}" class="boardSpot" th:id="${b.id}" th:if="${b.player.name} == null"></button>
+                        </form>
+                        <button class="boardSpot taken" th:classappend="${b.player.symbol}" th:id="${b.id}" th:if="${b.player.name} != null" th:text="${b.player.symbol}"></button>
+                    </div>
+                </div>
+                <div class="boardRow">
+                    <div th:each="b : ${board[2]}">
+                        <form action="/" method="post">
+                            <input type="text" th:value="${b.id}" name="id" hidden>
+                            <button th:type="${status.isActive ? 'submit' : 'button'}" class="boardSpot" th:id="${b.id}" th:if="${b.player.name} == null"></button>
+                        </form>
+                        <button class="boardSpot taken" th:classappend="${b.player.symbol}" th:id="${b.id}" th:if="${b.player.name} != null" th:text="${b.player.symbol}"></button>
+                    </div>
                 </div>
             </div>
         </div>

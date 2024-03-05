@@ -2,10 +2,13 @@
 body {
     font-family: system-ui;
     background-color: lightgray;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 p,h1,h2,h3,h4,h5 {
-    padding: 0;
+    margin: 0;
 }
 
 button {
@@ -14,51 +17,77 @@ button {
     padding: 16px;
 }
 
+.newBtn {
+    margin: 6px 0 0;
+}
+
 .gameParent {
-    /* Active Game CSS */
-    .activeGame {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 
+    .gameHead {
+        background-color: darkslategrey;
+        text-align: center;
+        width: 100%;
+        padding: 24px 0px;
     }
 
-    /* Inactive Game CSS */
-    .inactiveGame {
+    /* Game Header */
+    .gameInfo {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background-color: grey;
+        padding: 24px;
+        min-width: 345px;
 
-    }
+        /* Active Game CSS */
+        .activeGame {
+            text-align: center;
+            width: 100%;
+        }
 
-    /* Game Board */
-    .boardParent {
-        padding: 12px;
-        width: min-content;
+        /* Inactive Game CSS */
+        .inactiveGame {
+            text-align: center;
+            width: 100%;
+        }
 
-        /* Game Board Row */
-        .boardRow {
-            display: flex;
-            width: max-content;
+        /* Game Board */
+        .boardParent {
+            margin: 12px 0 0;
+            /* Game Board Row */
+            .boardRow {
+                display: flex;
+                align-items: center;
+                width: max-content;
 
-            .boardSpot {
-                border: 1px solid transparent;
-                padding: 16px;
-                width: 100px;
-                height: 100px;
-                font-size: 32px;
-                background-color: #bebcbc;
+                .boardSpot {
+                    border: 1px solid transparent;
+                    padding: 16px;
+                    width: 100px;
+                    height: 100px;
+                    font-size: 32px;
+                    background-color: #bebcbc;
 
-                .disable {
+                    .disable {
+                        cursor: not-allowed;
+                    }
+                }
+
+                .taken {
+                    font-weight: 600;
                     cursor: not-allowed;
                 }
-            }
 
-            .taken {
-                font-weight: 600;
-                cursor: not-allowed;
-            }
+                .O {
+                    background-color: crimson;
+                }
 
-            .O {
-                background-color: crimson;
-            }
-
-            .X {
-                background-color: dodgerblue;
+                .X {
+                    background-color: dodgerblue;
+                }
             }
         }
     }
