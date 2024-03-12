@@ -11,14 +11,24 @@ p,h1,h2,h3,h4,h5 {
     margin: 0;
 }
 
+a, a:active, a:visited {
+    color: black;
+}
+
 button {
+    font-family: system-ui;
+    color: black;
     cursor: pointer;
     border: 1px solid transparent;
     padding: 16px;
+    background-color: lightgray;
 }
 
 .newBtn {
     margin: 6px 0 0;
+    border: 2px solid black;
+    border-radius: 35px;
+    color: black;
 }
 
 .gameParent {
@@ -27,10 +37,11 @@ button {
     align-items: center;
 
     .gameHead {
-        background-color: darkslategrey;
+        background-color: #212121;
+        color: white;
         text-align: center;
         width: 100%;
-        padding: 24px 0px;
+        padding: 24px 0;
     }
 
     /* Game Header */
@@ -38,9 +49,8 @@ button {
         display: flex;
         flex-direction: column;
         align-items: center;
-        background-color: grey;
+        border: 2px solid #212121;
         padding: 24px;
-        min-width: 345px;
 
         /* Active Game CSS */
         .activeGame {
