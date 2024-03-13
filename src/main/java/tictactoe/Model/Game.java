@@ -5,11 +5,11 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.context.annotation.SessionScope;
 import tictactoe.Model.Board.Board;
 
-@Component
-@SessionScope
 /**
  * Contains methods for processing game requests
  */
+@Component
+@SessionScope
 public class Game {
     private Board board;
     private Player p1;

@@ -3,7 +3,7 @@ package tictactoe.Model.Board;
 import tictactoe.Model.Player;
 
 /**
- * Defines the board spot
+ * Defines a board spot
  */
 public class BoardSpot {
     private final int id;

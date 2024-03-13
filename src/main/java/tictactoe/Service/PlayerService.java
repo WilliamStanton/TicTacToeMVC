@@ -4,6 +4,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.context.annotation.RequestScope;
 import tictactoe.Model.Player;
 
+/**
+ * Contains two players and methods for alternating turns
+ */
 @Service
 @RequestScope
 public class PlayerService {
