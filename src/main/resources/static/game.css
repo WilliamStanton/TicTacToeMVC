@@ -24,13 +24,19 @@ button {
     background-color: lightgray;
 }
 
-.newBtn {
+.btn {
     margin: 6px 0 0;
     border: 2px solid black;
     border-radius: 35px;
     color: black;
 }
 
+/** Game Parent
+    - Game Head
+        * Contains Game Header
+    - Game Info
+        * Contains Game Status & Game Board
+ */
 .gameParent {
     display: flex;
     flex-direction: column;
@@ -52,16 +58,18 @@ button {
         border: 2px solid #212121;
         padding: 24px;
 
-        /* Active Game CSS */
-        .activeGame {
+        /* Game Status */
+        .gameStatus {
             text-align: center;
             width: 100%;
-        }
 
-        /* Inactive Game CSS */
-        .inactiveGame {
-            text-align: center;
-            width: 100%;
+            /* Active Game */
+            .activeGame {
+            }
+
+            /* Inactive Game */
+            .inactiveGame {
+            }
         }
 
         /* Game Board */
@@ -86,17 +94,45 @@ button {
                     }
                 }
 
-                .taken {
+                .O {
+                    background-color: crimson;
                     font-weight: 600;
                     cursor: not-allowed;
                 }
 
-                .O {
-                    background-color: crimson;
-                }
-
                 .X {
                     background-color: dodgerblue;
+                    font-weight: 600;
+                    cursor: not-allowed;
+                }
+            }
+
+            /* Board Row Designs */
+            .row1 {
+                border-bottom: 3px solid black;
+
+                /* Column 2 Design */
+                .col2 {
+                    border-left: 3px solid black;
+                    border-right: 3px solid black;
+                }
+            }
+
+            .row2 {
+                /* Column 5 Design */
+                .col5 {
+                    border-left: 3px solid black;
+                    border-right: 3px solid black;
+                }
+            }
+
+            .row3 {
+                border-top: 3px solid black;
+
+                /* Column 8 Design */
+                .col8 {
+                    border-left: 3px solid black;
+                    border-right: 3px solid black;
                 }
             }
         }

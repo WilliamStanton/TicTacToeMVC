@@ -36,7 +36,7 @@ public class GameController {
      * @throws GameUpdateException error updating game
      */
     @GetMapping("")
-    public String home(Model model) throws GameUpdateException {
+    public String game(Model model) throws GameUpdateException {
         // Add status
         model.addAttribute("player", playerService);
         model.addAttribute("status", statusService);

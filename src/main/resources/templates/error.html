@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<head>
+    <meta charset="UTF-8">
+    <title>ERROR - Tic Tac Toe - William Stanton</title>
+    <meta name="description" content="Simple Tic Tac Toe game developed in Java">
+    <link rel="preload" th:href="@{game.css}" as="style">
+    <link rel="stylesheet" th:href="@{game.css}" media="print" onload="this.media='all'">
+    <meta name="robots" content="noindex, nofollow">
+
+</head>
+<body>
+<!-- Game Info -->
+<div class="gameParent">
+    <div class="gameHead">
+        <h1>Tic Tac Toe Game</h1>
+    </div>
+    <div class="gameInfo">
+        <!-- Error Message -->
+        <div class="inactiveGame">
+            <h1>[[${error}]]</h1>
+        </div>
+        <button class="btn" onclick="history.back()">Go Back</button>
+    </div>
+</div>
+</body>
+</html>
