@@ -8,15 +8,16 @@ import tictactoe.Model.Board.Board;
 import tictactoe.Model.Board.BoardSpot;
 import tictactoe.Model.Game;
 
+/**
+ * Creates a board and methods for updating the board
+ */
 @Service
 @RequestScope
 public class BoardService {
-    private final Game game;
     private final Board board;
     private final PlayerService playerService;
 
-    public BoardService(Game game, Board board, PlayerService playerService) {
-        this.game = game;
+    public BoardService(Board board, PlayerService playerService) {
         this.board = board;
         this.playerService = playerService;
     }

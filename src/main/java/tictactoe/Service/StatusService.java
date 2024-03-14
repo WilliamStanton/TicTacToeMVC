@@ -10,6 +10,9 @@ import tictactoe.Model.Status.Winner;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+/**
+ * Provides methods for checking the game status
+ */
 @Service
 @RequestScope
 public class StatusService {

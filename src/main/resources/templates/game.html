@@ -17,73 +17,63 @@
         </div>
         <div class="gameInfo">
             <!-- Active Game -->
-            <div class="activeGame" th:if="${status.isActive}">
-                <h1><span th:text="${player.getNextPlayer}"></span>, it's your turn!</h1>
-            </div>
-
-            <!-- Inactive Game -->
-            <div class="inactiveGame" th:if="${!status.isActive}">
-                <h1>Game over..</h1>
-
-                <div class="winner" th:if="${status.isWon}">
-                    <p>Winner: <span th:text="${status.gameStatus.winner.player.name}"></span></p>
+            <div class="gameStatus">
+                <div class="activeGame" th:if="${status.isActive}">
+                    <h1>[[${player.getNextPlayer}]], it's your turn!</h1>
                 </div>
-                <div class="tie" th:if="${status.isTie}">
-                    <p>Tie!</p>
+
+                <!-- Inactive Game -->
+                <div class="inactiveGame" th:if="${!status.isActive}">
+                    <h1>Game over...</h1>
+
+                    <!-- Display Winner -->
+                    <div class="winner" th:if="${status.isWon}">
+                        <p>🎉 Winner: [[${status.gameStatus.winner.player.name}]]!</p>
+                    </div>
+
+                    <!-- Display Tie -->
+                    <div th:class="tie" th:if="${status.isTie}">
+                        <p>Tie!</p>
+                    </div>
+
+                    <!-- New Game Button  -->
+                    <form th:action="@{/restart}" th:method="post">
+                        <button class="btn" type="submit">Start new game</button>
+                    </form>
                 </div>
-                <form action="/restart" method="post">
-                    <button class="newBtn" type="submit">Start new game</button>
-                </form>
             </div>
 
             <!-- Game Board -->
             <div class="boardParent">
-                <div class="boardRow">
-                    <div th:each="b : ${board[0]}">
-                        <form action="/" method="post">
-                            <input type="text" th:value="${b.id}" name="id" hidden>
-                            <button th:type="${status.isActive ? 'submit' : 'button'}" class="boardSpot" th:id="${b.id}" th:if="${b.player.name} == null"></button>
-                        </form>
-                        <button class="boardSpot taken" th:classappend="${b.player.symbol}" th:id="${b.id}" th:if="${b.player.name} != null" th:text="${b.player.symbol}"></button>
-                    </div>
+                <!-- Row 1 -->
+                <div class="boardRow row1">
+                    <!-- Column 1-3 -->
+                    <form th:each="b : ${board[0]}" th:action="@{/}" th:method="post" th:class="'col' + ${b.id}">
+                        <input type="text" th:value="${b.id}" name="id" hidden> <!-- Holds Spot ID -->
+                        <!-- Display clickable blank button (if avail) ELSE display un-clickable player symbol -->
+                        <button th:type="${b.player.symbol == null && status.isActive ? 'submit' : 'button'}" class="boardSpot" th:classappend="${b.player.symbol != null ? b.player.symbol : ''}" th:id="${b.id}" th:text="${b.player.name != null ? b.player.symbol : ''}"></button>
+                    </form>
                 </div>
-                <div class="boardRow">
-                    <div th:each="b : ${board[1]}">
-                        <form action="/" method="post">
-                            <input type="text" th:value="${b.id}" name="id" hidden>
-                            <button th:type="${status.isActive ? 'submit' : 'button'}" class="boardSpot" th:id="${b.id}" th:if="${b.player.name} == null"></button>
-                        </form>
-                        <button class="boardSpot taken" th:classappend="${b.player.symbol}" th:id="${b.id}" th:if="${b.player.name} != null" th:text="${b.player.symbol}"></button>
-                    </div>
+                <!-- Row 2 -->
+                <div class="boardRow row2">
+                    <!-- Column 4-6 -->
+                    <form th:each="b : ${board[1]}" th:action="@{/}" th:method="post" th:class="'col' + ${b.id}">
+                        <input type="text" th:value="${b.id}" name="id" hidden> <!-- Holds Spot ID -->
+                        <!-- Display clickable blank button (if avail) ELSE display un-clickable player symbol -->
+                        <button th:type="${b.player.symbol == null && status.isActive ? 'submit' : 'button'}" class="boardSpot" th:classappend="${b.player.symbol != null ? b.player.symbol : ''}" th:id="${b.id}" th:text="${b.player.name != null ? b.player.symbol : ''}"></button>
+                    </form>
                 </div>
-                <div class="boardRow">
-                    <div th:each="b : ${board[2]}">
-                        <form action="/" method="post">
-                            <input type="text" th:value="${b.id}" name="id" hidden>
-                            <button th:type="${status.isActive ? 'submit' : 'button'}" class="boardSpot" th:id="${b.id}" th:if="${b.player.name} == null"></button>
-                        </form>
-                        <button class="boardSpot taken" th:classappend="${b.player.symbol}" th:id="${b.id}" th:if="${b.player.name} != null" th:text="${b.player.symbol}"></button>
-                    </div>
+                <!-- Row 3 -->
+                <div class="boardRow row3">
+                    <!-- Column 7-9 -->
+                    <form th:each="b : ${board[2]}" th:action="@{/}" th:method="post" th:class="'col' + ${b.id}">
+                        <input type="text" th:value="${b.id}" name="id" hidden> <!-- Holds Spot ID -->
+                        <!-- Display clickable blank button (if avail) ELSE display un-clickable player symbol -->
+                        <button th:type="${b.player.symbol == null && status.isActive ? 'submit' : 'button'}" class="boardSpot" th:classappend="${b.player.symbol != null ? b.player.symbol : ''}" th:id="${b.id}" th:text="${b.player.name != null ? b.player.symbol : ''}"></button>
+                    </form>
                 </div>
             </div>
         </div>
     </div>
-<script>
-    // Create tic-tac-toe design pattern
-    var style = "3px solid black";
-
-    document.getElementById("1").style.borderBottom = style;
-    document.getElementById("2").style.borderRight = style;
-    document.getElementById("2").style.borderLeft = style;
-    document.getElementById("2").style.borderBottom = style;
-    document.getElementById("3").style.borderBottom = style;
-    document.getElementById("5").style.borderRight = style;
-    document.getElementById("5").style.borderLeft = style;
-    document.getElementById("7").style.borderTop = style;
-    document.getElementById("8").style.borderRight = style;
-    document.getElementById("8").style.borderLeft = style;
-    document.getElementById("8").style.borderTop = style;
-    document.getElementById("9").style.borderTop = style;
-</script>
 </body>
 </html>
