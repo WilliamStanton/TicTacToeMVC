@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<head>
+    <meta charset="UTF-8">
+    <title>Game Properties</title>
+    <link rel="preload" th:href="@{main.css}" as="style">
+    <link rel="stylesheet" th:href="@{main.css}" media="print" onload="this.media='all'">
+
+</head>
+<body>
+    <!-- Game Properties -->
+    <div class="gameProperties">
+        <h1>Game Properties</h1>
+            <div class="gameOptions">
+                <form th:action="@{/}" method="post" th:object="${pp1}">
+                    <!-- Player 1 Form -->
+                    <h2>Player 1</h2>
+                    <label>Symbol
+                        <input type="" th:field="*{symbol}">
+                    </label>
+                    <label>Color
+                        <input type="" th:field="*{color}">
+                    </label>
+
+                    <!-- Player 2 Form -->
+                    <h2>Player 2</h2>
+                    <label>Symbol
+                        <input type="" th:field="*{symbol}">
+                    </label>
+                    <label>Color
+                        <input type="" th:field="*{color}">
+                    </label>
+
+                    <button type="submit">Start Game</button>
+                </form>
+            </div>
+        </div>
+</body>
+</html>

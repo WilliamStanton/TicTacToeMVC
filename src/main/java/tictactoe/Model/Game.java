@@ -4,6 +4,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.annotation.SessionScope;
 import tictactoe.Model.Board.Board;
+import tictactoe.Model.Player.Player;
 
 /**
  * Contains methods for processing game requests

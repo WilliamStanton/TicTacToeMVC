@@ -1,6 +1,6 @@
 package tictactoe.Model.Board;
 
-import tictactoe.Model.Player;
+import tictactoe.Model.Player.Player;
 
 /**
  * Defines a board spot

@@ -1,7 +1,7 @@
 package tictactoe.Model.Status;
 
 import tictactoe.Model.Board.BoardSpot;
-import tictactoe.Model.Player;
+import tictactoe.Model.Player.Player;
 
 import java.util.ArrayList;
 
