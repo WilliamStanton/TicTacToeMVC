@@ -57,7 +57,7 @@ public class PlayerService {
      */
     public void configurePlayers(PlayerProperties pp1, PlayerProperties pp2) throws PlayerException {
         // Set color and symbol if player hasn't yet been updated
-        if (playersConfigured()) {
+        if (!playersConfigured()) {
             // Update Player 1
             p1.setColor(pp1.getColor());
             p1.setSymbol(pp1.getSymbol());

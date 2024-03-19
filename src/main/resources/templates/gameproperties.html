@@ -6,6 +6,8 @@
     <title>Game Properties</title>
     <link rel="preload" th:href="@{main.css}" as="style">
     <link rel="stylesheet" th:href="@{main.css}" media="print" onload="this.media='all'">
+    <link rel="preload" th:href="@{gameproperties.css}" as="style">
+    <link rel="stylesheet" th:href="@{gameproperties.css}" media="print" onload="this.media='all'">
 
 </head>
 <body>
@@ -13,26 +15,47 @@
     <div class="gameProperties">
         <h1>Game Properties</h1>
             <div class="gameOptions">
-                <form th:action="@{/}" method="post" th:object="${pp1}">
+                <form th:action="@{/init}" method="post">
                     <!-- Player 1 Form -->
-                    <h2>Player 1</h2>
-                    <label>Symbol
-                        <input type="" th:field="*{symbol}">
-                    </label>
-                    <label>Color
-                        <input type="" th:field="*{color}">
-                    </label>
+                    <div class="player">
+                        <h2>Player 1</h2>
+                        <label>Symbol
+                            <select name="symbol1">
+                                <option value="❌">❌</option>
+                                <option value="❤️">❤️</option>
+                                <option value="🎉">🎉</option>
+                            </select>
+                        </label>
+                        <label>Color
+                            <select name="color1">
+                                <option value="none">None</option>
+                                <option value="blue">Blue</option>
+                                <option value="yellow">Yellow</option>
+                                <option value="tan">Tan</option>
+                            </select>
+                        </label>
+                    </div>
 
                     <!-- Player 2 Form -->
-                    <h2>Player 2</h2>
-                    <label>Symbol
-                        <input type="" th:field="*{symbol}">
-                    </label>
-                    <label>Color
-                        <input type="" th:field="*{color}">
-                    </label>
-
-                    <button type="submit">Start Game</button>
+                    <div class="player">
+                        <h2>Player 2</h2>
+                        <label>Symbol
+                            <select name="symbol2">
+                                <option value="⭕">⭕</option>
+                                <option value="💀">💀</option>
+                                <option value="👑">👑</option>
+                            </select>
+                        </label>
+                        <label>Color
+                            <select name="color2">
+                                <option value="none">None</option>
+                                <option value="purple">Purple</option>
+                                <option value="green">Green</option>
+                                <option value="brown">Brown</option>
+                            </select>
+                        </label>
+                    </div>
+                    <button class="btn" type="submit">Play Game</button>
                 </form>
             </div>
         </div>

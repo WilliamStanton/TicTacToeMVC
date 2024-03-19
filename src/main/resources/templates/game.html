@@ -28,19 +28,13 @@
                 <div class="inactiveGame" th:if="${!status.isActive}">
                     <h1>Game over...</h1>
 
-                    <!-- Display Winner -->
-                    <div class="winner" th:if="${status.isWon}">
-                        <p>🎉 Winner: [[${status.gameStatus.winner.player.name}]]!</p>
-                    </div>
-
-                    <!-- Display Tie -->
-                    <div th:class="tie" th:if="${status.isTie}">
-                        <p>Tie!</p>
-                    </div>
+                    <!-- Display Status -->
+                    <p th:if="${status.isWon}">[[${status.gameStatus.winner.player.name}]] [[${status.gameStatus.winner.player.symbol}]] has won!</p>
+                    <p th:if="${status.isTie}">Tie!</p>
 
                     <!-- New Game Button  -->
                     <form th:action="@{/restart}" th:method="post">
-                        <button class="btn" type="submit">Start new game</button>
+                        <button class="btn" type="submit">Play Again!</button>
                     </form>
                 </div>
             </div>
@@ -51,27 +45,27 @@
                 <div class="boardRow row1">
                     <!-- Column 1-3 -->
                     <form th:each="b : ${board[0]}" th:action="@{/}" th:method="post" th:class="'col' + ${b.id}">
-                        <input type="text" th:value="${b.id}" name="id" hidden> <!-- Holds Spot ID -->
+                        <input type="text" th:value="${b.id}" name="id" hidden/> <!-- Holds Spot ID -->
                         <!-- Display clickable blank button (if avail) ELSE display un-clickable player symbol -->
-                        <button th:type="${b.player.symbol == null && status.isActive ? 'submit' : 'button'}" class="boardSpot" th:classappend="${b.player.symbol != null ? b.player.symbol : ''}" th:id="${b.id}" th:text="${b.player.name != null ? b.player.symbol : ''}"></button>
+                        <button th:type="${b.player.symbol == null && status.isActive ? 'submit' : 'button'}" class="boardSpot" th:classappend="${b.player.symbol != null && b.player.color != 'none' ? b.player.color : ''}" th:id="${b.id}" th:text="${b.player.name != null ? b.player.symbol : ''}"></button>
                     </form>
                 </div>
                 <!-- Row 2 -->
                 <div class="boardRow row2">
                     <!-- Column 4-6 -->
                     <form th:each="b : ${board[1]}" th:action="@{/}" th:method="post" th:class="'col' + ${b.id}">
-                        <input type="text" th:value="${b.id}" name="id" hidden> <!-- Holds Spot ID -->
+                        <input type="text" th:value="${b.id}" name="id" hidden/> <!-- Holds Spot ID -->
                         <!-- Display clickable blank button (if avail) ELSE display un-clickable player symbol -->
-                        <button th:type="${b.player.symbol == null && status.isActive ? 'submit' : 'button'}" class="boardSpot" th:classappend="${b.player.symbol != null ? b.player.symbol : ''}" th:id="${b.id}" th:text="${b.player.name != null ? b.player.symbol : ''}"></button>
+                        <button th:type="${b.player.symbol == null && status.isActive ? 'submit' : 'button'}" class="boardSpot" th:classappend="${b.player.symbol != null && b.player.color != 'none' ? b.player.color : ''}" th:id="${b.id}" th:text="${b.player.name != null ? b.player.symbol : ''}"></button>
                     </form>
                 </div>
                 <!-- Row 3 -->
                 <div class="boardRow row3">
                     <!-- Column 7-9 -->
                     <form th:each="b : ${board[2]}" th:action="@{/}" th:method="post" th:class="'col' + ${b.id}">
-                        <input type="text" th:value="${b.id}" name="id" hidden> <!-- Holds Spot ID -->
+                        <input type="text" th:value="${b.id}" name="id" hidden/> <!-- Holds Spot ID -->
                         <!-- Display clickable blank button (if avail) ELSE display un-clickable player symbol -->
-                        <button th:type="${b.player.symbol == null && status.isActive ? 'submit' : 'button'}" class="boardSpot" th:classappend="${b.player.symbol != null ? b.player.symbol : ''}" th:id="${b.id}" th:text="${b.player.name != null ? b.player.symbol : ''}"></button>
+                        <button th:type="${b.player.symbol == null && status.isActive ? 'submit' : 'button'}" class="boardSpot" th:classappend="${b.player.symbol != null && b.player.color != 'none' ? b.player.color : ''}" th:id="${b.id}" th:text="${b.player.name != null ? b.player.symbol : ''}"></button>
                     </form>
                 </div>
             </div>

@@ -6,7 +6,7 @@ package tictactoe.Model.Player;
 public class Player {
     private final String name;
     private String symbol;
-    private int color;
+    private String color;
     private boolean isTurn;
     private boolean configured;
 
@@ -19,7 +19,7 @@ public class Player {
     }
 
     // Configured Player Constructor
-    public Player(Player player, String symbol, int color) {
+    public Player(Player player, String symbol, String color) {
         this.name = player.getName();
         this.symbol = symbol;
         this.color = color;
@@ -29,6 +29,10 @@ public class Player {
 
     public String getName() {
         return name;
+    }
+
+    public String getNameNormalized() {
+        return name.replaceAll(" ", "").toLowerCase();
     }
 
     public String getSymbol() {
@@ -47,11 +51,11 @@ public class Player {
         isTurn = turn;
     }
 
-    public int getColor() {
+    public String getColor() {
         return color;
     }
 
-    public void setColor(int color) {
+    public void setColor(String color) {
         this.color = color;
     }
 

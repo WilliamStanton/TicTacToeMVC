@@ -1,9 +1,26 @@
 /* Game Properties CSS */
 .gameProperties {
-    .player {
+    border: 3px solid black;
+    padding: 24px;
 
-        .gameOptions {
+    & h1 {
 
+    }
+
+    /* Game Options */
+    .gameOptions {
+
+        /* Players */
+        .player {
+            border: 2px solid black;
+            padding: 12px;
+            margin: 12px 0 0 0;
+            background-color: #BEBCBC;
+
+            & label, & select {
+                font-size: 18px;
+                margin-right: 12px;
+            }
         }
     }
 }

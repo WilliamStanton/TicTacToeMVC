@@ -38,6 +38,9 @@
 
             /* Inactive Game */
             .inactiveGame {
+                & p {
+                    font-size: 20px;
+                }
             }
         }
 
@@ -50,6 +53,7 @@
                 align-items: center;
                 width: max-content;
 
+                /* Game Board Spot */
                 .boardSpot {
                     border: 1px solid transparent;
                     padding: 16px;
@@ -63,15 +67,23 @@
                     }
                 }
 
-                .O {
-                    background-color: crimson;
-                    font-weight: 600;
+                /* Colors */
+                .blue {background-color: lightskyblue}
+                .yellow {background-color: yellow}
+                .tan {background-color: tan}
+                .purple {background-color: mediumpurple}
+                .green {background-color: lightgreen}
+                .brown {background-color: sandybrown}
+
+                /* Player 1 */
+                .player1 {
+                    background-color: #8252be;
                     cursor: not-allowed;
                 }
 
-                .X {
-                    background-color: dodgerblue;
-                    font-weight: 600;
+                /* Player 2 */
+                .player2 {
+                    background-color: #5b8cd5;
                     cursor: not-allowed;
                 }
             }

@@ -5,16 +5,16 @@ package tictactoe.Model.Player;
  */
 public class PlayerProperties {
     private final String symbol;
-    private final int color;
+    private final String color;
 
     // No-arg Constructor
     public PlayerProperties() {
         symbol = "";
-        color = 0;
+        color = "";
     }
 
     // Initialized Object
-    public PlayerProperties(String symbol, int color) {
+    public PlayerProperties(String symbol, String color) {
         this.symbol = symbol;
         this.color = color;
     }
@@ -23,7 +23,7 @@ public class PlayerProperties {
         return symbol;
     }
 
-    public int getColor() {
+    public String getColor() {
         return color;
     }
 }
