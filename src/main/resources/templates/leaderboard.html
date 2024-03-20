@@ -15,20 +15,22 @@
 <!-- Game Properties -->
 <div class="modalParent">
     <div class="modalHead">
-        <h1>Leaderboard</h1>
+        <h1>Game Leaderboard</h1>
     </div>
     <div class="modalInfo">
         <p>View Current Positions</p>
         <table>
             <thead>
                 <tr>
+                    <th>Position</th>
                     <th>Name</th>
                     <th>Wins</th>
                     <th>Losses</th>
                 </tr>
             </thead>
             <tbody>
-                <tr th:each="lb : ${leaderboard}">
+                <tr th:each="lb, i : ${leaderboard}">
+                    <td class="pos">[[${i.index}+1]]</td>
                     <td>[[${lb.name}]]</td>
                     <td>[[${lb.wins}]]</td>
                     <td>[[${lb.losses}]]</td>

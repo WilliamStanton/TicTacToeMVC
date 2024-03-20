@@ -15,10 +15,12 @@
     <!-- Game Properties -->
     <div class="modalParent">
         <div class="modalHead">
-            <h1>Game Settings</h1>
+            <h1 th:if="${!player.playersConfigured}">Welcome!</h1>
+            <h1 th:if="${player.playersConfigured}">Game Settings</h1>
         </div>
         <div class="modalInfo">
-            <p>Configure your game settings</p>
+            <p th:if="${!player.playersConfigured}">To start playing, please customize your experience!</p>
+            <p th:if="${player.playersConfigured}">Change your game settings</p>
             <form th:action="@{/settings}" method="post">
                 <!-- Player 1 Form -->
                 <div class="player">
