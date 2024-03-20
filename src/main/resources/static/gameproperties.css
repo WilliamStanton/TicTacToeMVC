@@ -1,26 +1,30 @@
 /* Game Properties CSS */
-.gameProperties {
-    border: 3px solid black;
-    padding: 24px;
+/* Players */
+.player {
+    border-radius: 6px;
+    padding: 12px;
+    margin: 12px 0 0 0;
+    background-color: #212121;
+    color: white;
 
-    & h1 {
-
+    & label, & select {
+        font-size: 18px;
+        margin-right: 12px;
     }
 
-    /* Game Options */
-    .gameOptions {
+    & input {
+        display: block;
+        border: 0;
+        background-color: #212121;
+        font-size: 24px;
+        font-weight: 700;
+        color: white;
+        border-bottom: 1px solid transparent;
+        margin: 0 0 5px 0;
+    }
 
-        /* Players */
-        .player {
-            border: 2px solid black;
-            padding: 12px;
-            margin: 12px 0 0 0;
-            background-color: #BEBCBC;
-
-            & label, & select {
-                font-size: 18px;
-                margin-right: 12px;
-            }
-        }
+    & input:focus {
+        outline: none;
+        border-bottom: 1px solid white;
     }
 }

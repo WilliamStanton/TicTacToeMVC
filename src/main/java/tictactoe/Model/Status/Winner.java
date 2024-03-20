@@ -9,13 +9,15 @@ import java.util.ArrayList;
  * Defines the winner
  */
 public class Winner {
-    private ArrayList<BoardSpot> boardSpots;
     private Player player;
     private final boolean won;
 
     // Winner Found Constructor
     public Winner(ArrayList<BoardSpot> boardSpots, Player player) {
-        this.boardSpots = boardSpots;
+        // Dump winning spots into the board spot
+        for (int i = 0; i < boardSpots.size(); i++) {
+            boardSpots.get(i).setWinningSpot(true);
+        }
         this.player = player;
         this.won = true;
     }
@@ -27,10 +29,6 @@ public class Winner {
 
     public boolean isWon() {
         return won;
-    }
-
-    public ArrayList<BoardSpot> getBoardSpots() {
-        return boardSpots;
     }
 
     public Player getPlayer() {

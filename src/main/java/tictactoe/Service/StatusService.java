@@ -4,6 +4,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.context.annotation.RequestScope;
 import tictactoe.Model.Board.Board;
 import tictactoe.Model.Board.BoardSpot;
+import tictactoe.Model.Game;
 import tictactoe.Model.Status.GameStatus;
 import tictactoe.Model.Status.Winner;
 
@@ -17,9 +18,11 @@ import java.util.Arrays;
 @RequestScope
 public class StatusService {
     private final Board board;
+    private final Game game;
 
-    public StatusService(Board board) {
+    public StatusService(Board board, Game game) {
         this.board = board;
+        this.game = game;
     }
 
     /**
@@ -46,6 +49,13 @@ public class StatusService {
         return gameStatus().isTie();
     }
 
+    public void setCompleted(boolean completed) {
+        game.setCompleted(completed);
+    }
+
+    public boolean isCompleted() {
+        return game.isCompleted();
+    }
     /**
      * Checks if there is a winner, tie, or no
      * @return true/false
@@ -75,7 +85,7 @@ public class StatusService {
             }
         }
 
-        // Check horizontal (each row)
+        // Check Horizontal (each row)
         for (int col = 0; col < bs.length; col++) {
             boolean colFlag = true;
             var p = bs[col][0];
@@ -122,13 +132,5 @@ public class StatusService {
             return new GameStatus(true);
         else
             return new GameStatus(false);
-    }
-
-    /**
-     * Gets the complete board
-     * @return complete board
-     */
-    public String getCompleteBoard() {
-        return board.toString();
     }
 }

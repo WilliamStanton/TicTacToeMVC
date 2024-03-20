@@ -4,35 +4,27 @@ package tictactoe.Model.Player;
  * Defines a player
  */
 public class Player {
-    private final String name;
+    private String name;
     private String symbol;
     private String color;
     private boolean isTurn;
     private boolean configured;
 
     // Initialization Constructor
-    public Player(String name, String symbol, boolean isTurn) {
+    public Player(String name, String symbol, String color, boolean isTurn) {
         this.isTurn = isTurn;
         this.name = name;
         this.symbol = symbol;
-        this.configured = false;
-    }
-
-    // Configured Player Constructor
-    public Player(Player player, String symbol, String color) {
-        this.name = player.getName();
-        this.symbol = symbol;
         this.color = color;
-        this.isTurn = player.isTurn();
-        this.configured = true;
+        this.configured = false;
     }
 
     public String getName() {
         return name;
     }
 
-    public String getNameNormalized() {
-        return name.replaceAll(" ", "").toLowerCase();
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getSymbol() {
