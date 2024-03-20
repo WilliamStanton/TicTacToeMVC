@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<head>
+    <meta charset="UTF-8">
+    <title>Leaderboard - Tic Tac Toe | William Stanton</title>
+    <link rel="preload" th:href="@{main.css}" as="style">
+    <link rel="stylesheet" th:href="@{main.css}" media="print" onload="this.media='all'">
+    <link rel="preload" th:href="@{leaderboard.css}" as="style">
+    <link rel="stylesheet" th:href="@{leaderboard.css}" media="print" onload="this.media='all'">
+    <meta name="robots" content="noindex, nofollow">
+
+</head>
+<body>
+<!-- Game Properties -->
+<div class="modalParent">
+    <div class="modalHead">
+        <h1>Leaderboard</h1>
+    </div>
+    <div class="modalInfo">
+        <p>View Current Positions</p>
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Wins</th>
+                    <th>Losses</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="lb : ${leaderboard}">
+                    <td>[[${lb.name}]]</td>
+                    <td>[[${lb.wins}]]</td>
+                    <td>[[${lb.losses}]]</td>
+                </tr>
+            </tbody>
+        </table>
+        <button class="btn" onclick="location.href='/'">Back to Game</button>
+    </div>
+</div>
+</body>
+</html>

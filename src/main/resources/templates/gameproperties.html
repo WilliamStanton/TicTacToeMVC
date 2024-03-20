@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<head>
+    <meta charset="UTF-8">
+    <title>Settings - Tic Tac Toe | William Stanton</title>
+    <link rel="preload" th:href="@{main.css}" as="style">
+    <link rel="stylesheet" th:href="@{main.css}" media="print" onload="this.media='all'">
+    <link rel="preload" th:href="@{gameproperties.css}" as="style">
+    <link rel="stylesheet" th:href="@{gameproperties.css}" media="print" onload="this.media='all'">
+    <meta name="robots" content="noindex, nofollow">
+
+</head>
+<body>
+    <!-- Game Properties -->
+    <div class="modalParent">
+        <div class="modalHead">
+            <h1>Game Settings</h1>
+        </div>
+        <div class="modalInfo">
+            <p>Configure your game settings</p>
+            <form th:action="@{/settings}" method="post">
+                <!-- Player 1 Form -->
+                <div class="player">
+                    <input type="text" th:value="${p1.name}" name="name1"/>
+                    <label>Symbol
+                        <select name="symbol1">
+                            <option th:each="s : ${s1}" th:value="${s}">[[${s}]]</option>
+                        </select>
+                    </label>
+                    <label>Color
+                        <select name="color1">
+                            <option th:each="c : ${c1}" th:value="${c}">[[${c}]]</option>
+                        </select>
+                    </label>
+                </div>
+                <!-- Player 2 Form -->
+                <div class="player">
+                    <input type="text" th:value="${p2.name}" name="name2"/>
+                    <label>Symbol
+                        <select name="symbol2">
+                            <option th:each="s : ${s2}" th:value="${s}">[[${s}]]</option>
+                        </select>
+                    </label>
+                    <label>Color
+                        <select name="color2">
+                            <option th:each="c : ${c2}" th:value="${c}">[[${c}]]</option>
+                        </select>
+                    </label>
+                </div>
+                <button class="btn" type="submit">Play Game</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,140 +1,91 @@
 /* Game CSS */
-body {
-    font-family: system-ui;
-    background-color: lightgray;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
 
-p,h1,h2,h3,h4,h5 {
-    margin: 0;
-}
+/* Game Status */
+.gameStatus {
+    text-align: center;
+    width: 306px;
 
-a, a:active, a:visited {
-    color: black;
-}
-
-button {
-    font-family: system-ui;
-    color: black;
-    cursor: pointer;
-    border: 1px solid transparent;
-    padding: 16px;
-    background-color: lightgray;
-}
-
-.btn {
-    margin: 6px 0 0;
-    border: 2px solid black;
-    border-radius: 35px;
-    color: black;
-}
-
-/** Game Parent
-    - Game Head
-        * Contains Game Header
-    - Game Info
-        * Contains Game Status & Game Board
- */
-.gameParent {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-
-    .gameHead {
-        background-color: #212121;
-        color: white;
-        text-align: center;
-        width: 100%;
-        padding: 24px 0;
+    /* Active Game */
+    .activeGame {
+        & h1 {
+            font-size: 26px;
+        }
     }
 
-    /* Game Header */
-    .gameInfo {
+    /* Inactive Game */
+    .inactiveGame {
+        background-color: #bebcbc;
+        padding: 16px 0;
+        border-radius: 12px;
+
+        & p {
+            font-size: 20px;
+        }
+    }
+}
+
+/* Game Board */
+.boardParent {
+    margin: 12px 0 0;
+    /* Game Board Row */
+    .boardRow {
         display: flex;
-        flex-direction: column;
         align-items: center;
-        border: 2px solid #212121;
-        padding: 24px;
+        width: max-content;
 
-        /* Game Status */
-        .gameStatus {
-            text-align: center;
-            width: 100%;
+        /* Winning Spot */
+        .winningSpot {
+            background-color: #bebcbc !important;
+        }
 
-            /* Active Game */
-            .activeGame {
-            }
+        /* Game Board Spot */
+        .boardSpot {
+            border: 1px solid transparent;
+            padding: 16px;
+            width: 100px;
+            height: 100px;
+            font-size: 32px;
 
-            /* Inactive Game */
-            .inactiveGame {
+            .disable {
+                cursor: not-allowed;
             }
         }
 
-        /* Game Board */
-        .boardParent {
-            margin: 12px 0 0;
-            /* Game Board Row */
-            .boardRow {
-                display: flex;
-                align-items: center;
-                width: max-content;
+        /* Colors */
+        .blue {background-color: lightskyblue}
+        .yellow {background-color: yellow}
+        .tan {background-color: tan}
+        .purple {background-color: mediumpurple}
+        .green {background-color: lightgreen}
+        .brown {background-color: sandybrown}
+    }
 
-                .boardSpot {
-                    border: 1px solid transparent;
-                    padding: 16px;
-                    width: 100px;
-                    height: 100px;
-                    font-size: 32px;
-                    background-color: #bebcbc;
+    /* Board Row Designs */
+    .row1 {
+        border-bottom: 3px solid black;
 
-                    .disable {
-                        cursor: not-allowed;
-                    }
-                }
+        /* Column 2 Design */
+        .col2 {
+            border-left: 3px solid black;
+            border-right: 3px solid black;
+        }
+    }
 
-                .O {
-                    background-color: crimson;
-                    font-weight: 600;
-                    cursor: not-allowed;
-                }
+    .row2 {
+        /* Column 5 Design */
+        .col5 {
+            border-left: 3px solid black;
+            border-right: 3px solid black;
+        }
+    }
 
-                .X {
-                    background-color: dodgerblue;
-                    font-weight: 600;
-                    cursor: not-allowed;
-                }
-            }
+    .row3 {
+        border-top: 3px solid black;
 
-            /* Board Row Designs */
-            .row1 {
-                border-bottom: 3px solid black;
-
-                /* Column 2 Design */
-                .col2 {
-                    border-left: 3px solid black;
-                    border-right: 3px solid black;
-                }
-            }
-
-            .row2 {
-                /* Column 5 Design */
-                .col5 {
-                    border-left: 3px solid black;
-                    border-right: 3px solid black;
-                }
-            }
-
-            .row3 {
-                border-top: 3px solid black;
-
-                /* Column 8 Design */
-                .col8 {
-                    border-left: 3px solid black;
-                    border-right: 3px solid black;
-                }
-            }
+        /* Column 8 Design */
+        .col8 {
+            border-left: 3px solid black;
+            border-right: 3px solid black;
         }
     }
 }

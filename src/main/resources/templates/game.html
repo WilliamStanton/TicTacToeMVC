@@ -3,19 +3,21 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <head>
     <meta charset="UTF-8">
-    <title>Tic Tac Toe - William Stanton</title>
+    <title>Tic Tac Toe | William Stanton</title>
     <meta name="description" content="Simple Tic Tac Toe game developed in Java">
+    <link rel="preload" th:href="@{main.css}" as="style">
     <link rel="preload" th:href="@{game.css}" as="style">
+    <link rel="stylesheet" th:href="@{main.css}" media="print" onload="this.media='all'">
     <link rel="stylesheet" th:href="@{game.css}" media="print" onload="this.media='all'">
 
 </head>
 <body>
     <!-- Game Info -->
-    <div class="gameParent">
-        <div class="gameHead">
+    <div class="modalParent">
+        <div class="modalHead">
             <h1>Tic Tac Toe Game</h1>
         </div>
-        <div class="gameInfo">
+        <div class="modalInfo">
             <!-- Active Game -->
             <div class="gameStatus">
                 <div class="activeGame" th:if="${status.isActive}">
@@ -26,19 +28,13 @@
                 <div class="inactiveGame" th:if="${!status.isActive}">
                     <h1>Game over...</h1>
 
-                    <!-- Display Winner -->
-                    <div class="winner" th:if="${status.isWon}">
-                        <p>🎉 Winner: [[${status.gameStatus.winner.player.name}]]!</p>
-                    </div>
-
-                    <!-- Display Tie -->
-                    <div th:class="tie" th:if="${status.isTie}">
-                        <p>Tie!</p>
-                    </div>
+                    <!-- Display Status -->
+                    <p th:if="${status.isWon}">[[${status.gameStatus.winner.player.name}]] [[${status.gameStatus.winner.player.symbol}]] has won!</p>
+                    <p th:if="${status.isTie}">Tie!</p>
 
                     <!-- New Game Button  -->
                     <form th:action="@{/restart}" th:method="post">
-                        <button class="btn" type="submit">Start new game</button>
+                        <button class="btn" type="submit">Play Again!</button>
                     </form>
                 </div>
             </div>
@@ -49,30 +45,38 @@
                 <div class="boardRow row1">
                     <!-- Column 1-3 -->
                     <form th:each="b : ${board[0]}" th:action="@{/}" th:method="post" th:class="'col' + ${b.id}">
-                        <input type="text" th:value="${b.id}" name="id" hidden> <!-- Holds Spot ID -->
+                        <input type="text" th:value="${b.id}" name="id" hidden/> <!-- Holds Spot ID -->
                         <!-- Display clickable blank button (if avail) ELSE display un-clickable player symbol -->
-                        <button th:type="${b.player.symbol == null && status.isActive ? 'submit' : 'button'}" class="boardSpot" th:classappend="${b.player.symbol != null ? b.player.symbol : ''}" th:id="${b.id}" th:text="${b.player.name != null ? b.player.symbol : ''}"></button>
+                        <button th:type="${b.player.symbol == null && status.isActive ? 'submit' : 'button'}" class="boardSpot" th:classappend="|${b.player.symbol != null && b.player.color != 'None' ? b.player.color : ''} ${b.isWinningSpot ? 'winningSpot' : ''}|" th:id="${b.id}" th:text="${b.player.name != null ? b.player.symbol : ''}"></button>
                     </form>
                 </div>
                 <!-- Row 2 -->
                 <div class="boardRow row2">
                     <!-- Column 4-6 -->
                     <form th:each="b : ${board[1]}" th:action="@{/}" th:method="post" th:class="'col' + ${b.id}">
-                        <input type="text" th:value="${b.id}" name="id" hidden> <!-- Holds Spot ID -->
+                        <input type="text" th:value="${b.id}" name="id" hidden/> <!-- Holds Spot ID -->
                         <!-- Display clickable blank button (if avail) ELSE display un-clickable player symbol -->
-                        <button th:type="${b.player.symbol == null && status.isActive ? 'submit' : 'button'}" class="boardSpot" th:classappend="${b.player.symbol != null ? b.player.symbol : ''}" th:id="${b.id}" th:text="${b.player.name != null ? b.player.symbol : ''}"></button>
+                        <button th:type="${b.player.symbol == null && status.isActive ? 'submit' : 'button'}" class="boardSpot" th:classappend="|${b.player.symbol != null && b.player.color != 'None' ? b.player.color : ''} ${b.isWinningSpot ? 'winningSpot' : ''}|" th:id="${b.id}" th:text="${b.player.name != null ? b.player.symbol : ''}"></button>
                     </form>
                 </div>
                 <!-- Row 3 -->
                 <div class="boardRow row3">
                     <!-- Column 7-9 -->
                     <form th:each="b : ${board[2]}" th:action="@{/}" th:method="post" th:class="'col' + ${b.id}">
-                        <input type="text" th:value="${b.id}" name="id" hidden> <!-- Holds Spot ID -->
+                        <input type="text" th:value="${b.id}" name="id" hidden/> <!-- Holds Spot ID -->
                         <!-- Display clickable blank button (if avail) ELSE display un-clickable player symbol -->
-                        <button th:type="${b.player.symbol == null && status.isActive ? 'submit' : 'button'}" class="boardSpot" th:classappend="${b.player.symbol != null ? b.player.symbol : ''}" th:id="${b.id}" th:text="${b.player.name != null ? b.player.symbol : ''}"></button>
+                        <button th:type="${b.player.symbol == null && status.isActive ? 'submit' : 'button'}" class="boardSpot" th:classappend="|${b.player.symbol != null && b.player.color != 'None' ? b.player.color : ''} ${b.isWinningSpot ? 'winningSpot' : ''}|" th:id="${b.id}" th:text="${b.player.name != null ? b.player.symbol : ''}"></button>
                     </form>
                 </div>
             </div>
+        </div>
+        <div class="modalOptions">
+            <!-- New Game Button  -->
+            <form th:action="@{/restart}" th:method="post">
+                <button class="btn" type="submit">🔄 Restart</button>
+            </form>
+            <button class="btn" onclick="location.href='/leaderboard'">📈 Leaderboard</button>
+            <button class="btn" onclick="location.href='/settings'">⚙️ Settings</button>
         </div>
     </div>
 </body>
