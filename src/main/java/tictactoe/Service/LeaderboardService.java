@@ -5,9 +5,11 @@ import tictactoe.Model.Player.Statistics;
 import tictactoe.Repository.LeaderboardRepository;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Comparator;
 
+/**
+ * Provides methods for manipulating the leaderboard
+ */
 @Service
 public class LeaderboardService {
     private final LeaderboardRepository leaderboardRepository;

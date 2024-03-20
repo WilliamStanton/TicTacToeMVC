@@ -6,6 +6,9 @@ import tictactoe.Model.Player.Statistics;
 
 import java.util.ArrayList;
 
+/**
+ * Stores and updates the leaderboard
+ */
 @Repository
 public class LeaderboardRepository {
     private static ArrayList<Statistics> statistics = new ArrayList<>();
