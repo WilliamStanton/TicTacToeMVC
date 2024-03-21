@@ -56,7 +56,13 @@ public class PlayerService {
      * @param pp1 Player Properties for p1
      * @param pp2 Player Properties for p2
      */
-    public void configurePlayers(PlayerProperties pp1, PlayerProperties pp2) {
+    public void configurePlayers(PlayerProperties pp1, PlayerProperties pp2) throws PlayerException {
+        // Ensure name isn't over 25 chars
+        if (pp1.getName().length() > 20)
+            throw new PlayerException("Player name is too long (" + pp1.getName().length() + "/" + "20 characters)");
+        else if (pp2.getName().length() > 20)
+            throw new PlayerException("Player name is too long (" + pp2.getName().length() + "/" + "20 characters)");
+
         // Configure Player 1
         p1.setName(pp1.getName());
         p1.setColor(pp1.getColor());

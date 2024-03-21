@@ -22,6 +22,7 @@ table {
             padding: 8px;
             background-color: #bebcbc;
             text-align: center;
+            max-width: 8ch;
         }
 
         /* Position */

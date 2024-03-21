@@ -31,10 +31,8 @@ public class GameController {
     private final LeaderboardRepository leaderboardRepository;
     private final Player p1;
     private final Player p2;
-    private PlayerProperties pp1;
-    private PlayerProperties pp2;
 
-    public GameController(Board board, BoardService boardService, PlayerService playerService, StatusService statusService, LeaderboardService leaderboardService, LeaderboardRepository leaderboardRepository, Player p1, Player p2, PlayerProperties pp1, PlayerProperties pp2) {
+    public GameController(Board board, BoardService boardService, PlayerService playerService, StatusService statusService, LeaderboardService leaderboardService, LeaderboardRepository leaderboardRepository, Player p1, Player p2) {
         this.board = board;
         this.boardService = boardService;
         this.playerService = playerService;
@@ -43,8 +41,6 @@ public class GameController {
         this.leaderboardRepository = leaderboardRepository;
         this.p1 = p1;
         this.p2 = p2;
-        this.pp1 = pp1;
-        this.pp2 = pp2;
     }
 
     /**
@@ -146,12 +142,8 @@ public class GameController {
      */
     @PostMapping("/settings")
     public String gameProperties(@RequestParam String name1, @RequestParam String name2, @RequestParam String symbol1, @RequestParam String symbol2, @RequestParam String color1, @RequestParam String color2) throws PlayerException {
-        // Save Player Properties
-        pp1 = new PlayerProperties(name1, symbol1, color1);
-        pp2 = new PlayerProperties(name2, symbol2, color2);
-
         // Configure players
-        playerService.configurePlayers(pp1, pp2);
+        playerService.configurePlayers(new PlayerProperties(name1, symbol1, color1), new PlayerProperties(name2, symbol2, color2));
 
         // Redirect to game
         return "redirect:/";
@@ -166,8 +158,8 @@ public class GameController {
     @PostMapping("/restart")
     public String restartGame(HttpServletRequest request, HttpSession session) throws PlayerException {
         // Save current session Player Properties
-        PlayerProperties pp1t = new PlayerProperties(pp1.getName(), pp1.getSymbol(), pp1.getColor());
-        PlayerProperties pp2t = new PlayerProperties(pp2.getName(), pp2.getSymbol(), pp2.getColor());
+        var pp1t = new PlayerProperties(p1.getName(), p1.getSymbol(), p1.getColor());
+        var pp2t = new PlayerProperties(p2.getName(), p2.getSymbol(), p2.getColor());
 
         // Invalidate Current Session
         session.invalidate();

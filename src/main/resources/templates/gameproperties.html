@@ -19,7 +19,7 @@
             <h1 th:if="${player.playersConfigured}">Game Settings</h1>
         </div>
         <div class="modalInfo">
-            <p th:if="${!player.playersConfigured}">To start playing, please customize your experience!</p>
+            <p th:if="${!player.playersConfigured}">Customize your experience before playing!</p>
             <p th:if="${player.playersConfigured}">Change your game settings</p>
             <form th:action="@{/settings}" method="post">
                 <!-- Player 1 Form -->
@@ -50,7 +50,7 @@
                         </select>
                     </label>
                 </div>
-                <button class="btn" type="submit">Play Game</button>
+                <button class="btnCenter" type="submit">Play Game</button>
             </form>
         </div>
     </div>

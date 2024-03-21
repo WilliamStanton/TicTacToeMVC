@@ -52,17 +52,5 @@ public class Game {
     public Player getP2() {
         return p2;
     }
-
-    @Bean("pp1")
-    @SessionScope
-    public PlayerProperties getPp1() {
-        return pp1;
-    }
-
-    @Bean("pp2")
-    @SessionScope
-    public PlayerProperties getPp2() {
-        return pp2;
-    }
 }
 
