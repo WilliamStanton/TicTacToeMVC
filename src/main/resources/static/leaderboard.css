@@ -2,33 +2,31 @@
 /* Table */
 table {
     border-collapse: collapse;
+}
 
-    /* Table Head */
-    & thead {
-        background-color: #212121;
-        color: white;
+/* Table Head */
+table thead {
+    background-color: #212121;
+    color: white;
+}
 
-        & th {
-            font-size: 22px;
-            padding: 8px;
-            border: 1px solid #212121;
-        }
-    }
+table thead th {
+    font-size: 22px;
+    padding: 8px;
+    border: 1px solid #212121;
+}
 
-    & tbody {
-        & td {
-            font-size: 16px;
-            border: 1px solid #212121;
-            padding: 8px;
-            background-color: #bebcbc;
-            text-align: center;
-            max-width: 8ch;
-        }
+/* Table Body */
+table tbody td {
+    font-size: 16px;
+    border: 1px solid #212121;
+    padding: 8px;
+    background-color: #bebcbc;
+    text-align: center;
+    max-width: 8ch;
+}
 
-        /* Position */
-        .pos {
-            font-weight: 700;
-        }
-    }
+table tbody .pos {
+    font-weight: 700;
 }
 

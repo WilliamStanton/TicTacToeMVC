@@ -7,24 +7,25 @@
     background-color: #212121;
     color: white;
 
-    & label, & select {
-        font-size: 18px;
-        margin-right: 12px;
-    }
+}
 
-    & input {
-        display: block;
-        border: 0;
-        background-color: #212121;
-        font-size: 24px;
-        font-weight: 700;
-        color: white;
-        border-bottom: 1px solid transparent;
-        margin: 0 0 5px 0;
-    }
+.player label, select {
+    font-size: 18px;
+    margin-right: 12px;
+}
 
-    & input:focus {
-        outline: none;
-        border-bottom: 1px solid white;
-    }
+.player input {
+    display: block;
+    border: 0;
+    background-color: #212121;
+    font-size: 24px;
+    font-weight: 700;
+    color: white;
+    border-bottom: 1px solid transparent;
+    margin: 0 0 5px 0;
+}
+
+.player input:focus {
+    outline: none;
+    border-bottom: 1px solid white;
 }

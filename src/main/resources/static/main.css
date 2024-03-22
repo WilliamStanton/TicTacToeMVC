@@ -40,35 +40,35 @@ button {
     flex-direction: column;
     align-items: center;
     min-width: 360px;
+}
 
-    .modalHead {
-        background-color: #212121;
-        color: white;
-        text-align: center;
-        border: 2px solid #212121;
-        padding: 24px 0;
-        width: 100%;
-        border-radius: 12px 12px 0 0;
-    }
+.modalParent .modalHead {
+    background-color: #212121;
+    color: white;
+    text-align: center;
+    border: 2px solid #212121;
+    padding: 24px 0;
+    width: 100%;
+    border-radius: 12px 12px 0 0;
+}
 
-    /* Game Header */
-    .modalInfo {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        border: 2px solid #212121;
-        width: 100%;
-        padding: 24px 0;
-        border-radius: 0 0 12px 12px;
-        background-color: #dbdbdb;
-    }
+/* Game Header */
+.modalParent .modalInfo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 2px solid #212121;
+    width: 100%;
+    padding: 24px 0;
+    border-radius: 0 0 12px 12px;
+    background-color: #dbdbdb;
+}
 
-    /* Game Configuration Buttons */
-    .modalOptions {
-        display: flex;
-        justify-content: space-between;
-        width: 100%;
-    }
+/* Game Configuration Buttons */
+.modalParent .modalOptions {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
 }
 
 .btn {
