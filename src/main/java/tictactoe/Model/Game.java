@@ -5,7 +5,6 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.context.annotation.SessionScope;
 import tictactoe.Model.Board.Board;
 import tictactoe.Model.Player.Player;
-import tictactoe.Model.Player.PlayerProperties;
 
 /**
  * Contains methods for processing game requests
@@ -16,8 +15,6 @@ public class Game {
     private final Board board;
     private final Player p1;
     private final Player p2;
-    private PlayerProperties pp1;
-    private PlayerProperties pp2;
     private boolean completed;
 
     // Initialize board

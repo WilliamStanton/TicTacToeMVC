@@ -24,7 +24,7 @@
             <form th:action="@{/settings}" method="post">
                 <!-- Player 1 Form -->
                 <div class="player">
-                    <input type="text" th:value="${p1.name}" name="name1"/>
+                    <input type="text" th:value="${p1.name} == '' ? ${p1.name} : ''" name="name1" placeholder="Player 1 Name" required>
                     <label>Symbol
                         <select name="symbol1">
                             <option th:each="s : ${s1}" th:value="${s}">[[${s}]]</option>
@@ -38,7 +38,7 @@
                 </div>
                 <!-- Player 2 Form -->
                 <div class="player">
-                    <input type="text" th:value="${p2.name}" name="name2"/>
+                    <input type="text" th:value="${p2.name} == '' ? ${p2.name} : ''" name="name2" placeholder="Player 2 Name" required>
                     <label>Symbol
                         <select name="symbol2">
                             <option th:each="s : ${s2}" th:value="${s}">[[${s}]]</option>

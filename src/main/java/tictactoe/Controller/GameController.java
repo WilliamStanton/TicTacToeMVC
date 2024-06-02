@@ -59,15 +59,10 @@ public class GameController {
 
             // Check if won, and if so, has game not been completed? If not, update leaderboard
             if (statusService.isWon() && !statusService.isCompleted()) {
-                // Get winner & handle win
+                // Get winner & handle win and loss
                 var winningPlayer = statusService.gameStatus().getWinner().getPlayer();
-                leaderboardRepository.addWin(winningPlayer);
-
-                // Handle loss
-                if (winningPlayer.equals(p1)) {
-                    leaderboardRepository.addLoss(p2);
-                } else
-                    leaderboardRepository.addLoss(p1);
+                leaderboardRepository.addWin(statusService.gameStatus().getWinner().getPlayer()); // add win
+                leaderboardRepository.addLoss(winningPlayer.equals(p1) ? p2 : p1); // add loss
 
                 // Mark game completed
                 statusService.setCompleted(true);
