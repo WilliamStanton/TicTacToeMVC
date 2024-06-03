@@ -8,6 +8,8 @@ import tictactoe.Model.Board.Board;
 import tictactoe.Model.Board.BoardSpot;
 import tictactoe.Model.Game;
 
+import java.util.Random;
+
 /**
  * Creates a board and methods for updating the board
  */
@@ -32,7 +34,7 @@ public class BoardService {
             var spot = getBoardSpot(id);
 
             // Check if spot already is taken
-            if (spot.getPlayer().getName() != null) {
+            if (spot.isTaken()) {
                 throw new GameUpdateException("The chosen spot is already taken");
             }
 
@@ -43,6 +45,24 @@ public class BoardService {
             playerService.nextTurn();
         } catch (Exception e) {
             throw new GameUpdateException("The chosen spot doesn't exist");
+        }
+    }
+
+    /**
+     * Updates the board for the computer
+     */
+    public void updateBoard() {
+        boolean found = false; // init flag
+        Random rand = new Random(); // init rand
+
+        // Find an available spot on board to place computer
+        while (!found) {
+            var spot = getBoardSpot(rand.nextInt(8)+1); // choose from spots 1-9
+            if (!spot.isTaken()) {
+                found = true; // update flag
+                spot.setPlayer(playerService.getNextPlayer()); // Update board spot for current player
+                playerService.nextTurn(); // Update next player
+            }
         }
     }
 

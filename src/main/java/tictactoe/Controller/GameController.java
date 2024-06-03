@@ -2,6 +2,7 @@ package tictactoe.Controller;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
+import org.springframework.boot.context.properties.bind.DefaultValue;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -57,16 +58,8 @@ public class GameController {
             model.addAttribute("status", statusService);
             model.addAttribute("board", board.getBoardSpots());
 
-            // Check if won, and if so, has game not been completed? If not, update leaderboard
-            if (statusService.isWon() && !statusService.isCompleted()) {
-                // Get winner & handle win and loss
-                var winningPlayer = statusService.gameStatus().getWinner().getPlayer();
-                leaderboardRepository.addWin(statusService.gameStatus().getWinner().getPlayer()); // add win
-                leaderboardRepository.addLoss(winningPlayer.equals(p1) ? p2 : p1); // add loss
-
-                // Mark game completed
-                statusService.setCompleted(true);
-            }
+            // Update game status
+            statusService.gameStatus();
 
             // Return game
             return "game.html";
@@ -87,8 +80,15 @@ public class GameController {
     @PostMapping("")
     public String updateBoard(@RequestParam int id) throws GameUpdateException {
         // Ensure game is active
-        if (statusService.isActive())
+        if (statusService.isActive() && !statusService.isComputer())
             boardService.updateBoard(id); // Update Board
+        else if (statusService.isActive()) {
+            boardService.updateBoard(id); // Update Board
+            statusService.gameStatus(); // Update Game status
+            // if game is still active, it's computers move
+            if (statusService.isActive())
+                boardService.updateBoard(); // (Computer Move) - Update Board
+        }
 
         // Return back to game page
         return "redirect:/";
@@ -104,6 +104,7 @@ public class GameController {
         model.addAttribute("player", playerService); // player service
         model.addAttribute("p1", p1);
         model.addAttribute("p2", p2);
+        model.addAttribute("computer", statusService.isComputer());
 
         // Add Symbol List for players
         model.addAttribute("s1", playerService.symbolList(p1, new String[]{"❌", "❤️", "\uD83C\uDF89"})); // Player 1
@@ -115,6 +116,21 @@ public class GameController {
 
         // Return game properties
         return "gameproperties.html";
+    }
+
+    /**
+     * Sets the game properties
+     * @return redirect back to game
+     * @throws PlayerException error info
+     */
+    @PostMapping("/settings")
+    public String gameProperties(@RequestParam String name1, @RequestParam String name2, @RequestParam String symbol1, @RequestParam String symbol2, @RequestParam String color1, @RequestParam String color2, @RequestParam(defaultValue = "false") boolean computer) throws PlayerException {
+        // Configure players
+        playerService.configurePlayers(new PlayerProperties(name1, symbol1, color1), new PlayerProperties(name2, symbol2, color2), computer);
+        if (computer) statusService.setComputer(true);
+
+        // Redirect to game
+        return "redirect:/";
     }
 
     /**
@@ -131,20 +147,6 @@ public class GameController {
     }
 
     /**
-     * Sets the game properties
-     * @return redirect back to game
-     * @throws PlayerException error info
-     */
-    @PostMapping("/settings")
-    public String gameProperties(@RequestParam String name1, @RequestParam String name2, @RequestParam String symbol1, @RequestParam String symbol2, @RequestParam String color1, @RequestParam String color2) throws PlayerException {
-        // Configure players
-        playerService.configurePlayers(new PlayerProperties(name1, symbol1, color1), new PlayerProperties(name2, symbol2, color2));
-
-        // Redirect to game
-        return "redirect:/";
-    }
-
-    /**
      * Restarts the game
      * @param request HTTP Request
      * @param session HTTP Session
@@ -155,6 +157,7 @@ public class GameController {
         // Save current session Player Properties
         var pp1t = new PlayerProperties(p1.getName(), p1.getSymbol(), p1.getColor());
         var pp2t = new PlayerProperties(p2.getName(), p2.getSymbol(), p2.getColor());
+        boolean computer = statusService.isComputer();
 
         // Invalidate Current Session
         session.invalidate();
@@ -163,7 +166,7 @@ public class GameController {
         var newSession = request.getSession();
 
         // Configure players from prior session
-        playerService.configurePlayers(pp1t, pp2t);
+        playerService.configurePlayers(pp1t, pp2t, computer);
 
         // Send user to game
         return "redirect:/";

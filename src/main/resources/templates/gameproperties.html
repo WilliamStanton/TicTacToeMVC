@@ -15,16 +15,14 @@
     <!-- Game Properties -->
     <div class="modalParent">
         <div class="modalHead">
-            <h1 th:if="${!player.playersConfigured}">Welcome!</h1>
-            <h1 th:if="${player.playersConfigured}">Game Settings</h1>
+            <h1 th:text="${player.playersConfigured ? 'Game Settings' : 'Welcome!'}"></h1>
         </div>
         <div class="modalInfo">
-            <p th:if="${!player.playersConfigured}">Customize your experience before playing!</p>
-            <p th:if="${player.playersConfigured}">Change your game settings</p>
+            <p th:text="${player.playersConfigured} ? 'Modify your game settings' : 'Customize your experience before playing!'"></p>
             <form th:action="@{/settings}" method="post">
                 <!-- Player 1 Form -->
                 <div class="player">
-                    <input type="text" th:value="${p1.name} == '' ? ${p1.name} : ''" name="name1" placeholder="Player 1 Name" required>
+                    <input type="text" th:value="${p1.name} != '' ? ${p1.name} : ''" name="name1" placeholder="Player 1 Name" required>
                     <label>Symbol
                         <select name="symbol1">
                             <option th:each="s : ${s1}" th:value="${s}">[[${s}]]</option>
@@ -38,7 +36,7 @@
                 </div>
                 <!-- Player 2 Form -->
                 <div class="player">
-                    <input type="text" th:value="${p2.name} == '' ? ${p2.name} : ''" name="name2" placeholder="Player 2 Name" required>
+                    <input type="text" th:value="${p2.name} != '' ? ${p2.name} : ''" name="name2" placeholder="Player 2 Name">
                     <label>Symbol
                         <select name="symbol2">
                             <option th:each="s : ${s2}" th:value="${s}">[[${s}]]</option>
@@ -48,6 +46,11 @@
                         <select name="color2">
                             <option th:each="c : ${c2}" th:value="${c}">[[${c}]]</option>
                         </select>
+                    </label>
+                </div>
+                <div class="computer">
+                    <label>Play Computer
+                        <input type="checkbox" name="computer" th:checked="${computer}">
                     </label>
                 </div>
                 <button class="btnCenter" type="submit">Play Game</button>

@@ -29,3 +29,11 @@
     outline: none;
     border-bottom: 1px solid white;
 }
+
+.computer {
+    padding: 12px;
+    background-color: #212121;
+    border-radius: 6px;
+    margin: 5px 0;
+    color: white;
+}

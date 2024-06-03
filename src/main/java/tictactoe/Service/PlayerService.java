@@ -16,12 +16,13 @@ import java.util.ArrayList;
 public class PlayerService {
     private final Player p1;
     private final Player p2;
+    private final StatusService statusService;
 
-    public PlayerService(Player p1, Player p2) {
+    public PlayerService(Player p1, Player p2, StatusService statusService) {
         this.p1 = p1;
         this.p2 = p2;
+        this.statusService = statusService;
     }
-
     /**
      * Sets the player for the next turn
      */
@@ -56,7 +57,7 @@ public class PlayerService {
      * @param pp1 Player Properties for p1
      * @param pp2 Player Properties for p2
      */
-    public void configurePlayers(PlayerProperties pp1, PlayerProperties pp2) throws PlayerException {
+    public void configurePlayers(PlayerProperties pp1, PlayerProperties pp2, boolean computer) throws PlayerException {
         // Ensure name isn't over 25 chars
         if (pp1.getName().length() > 20)
             throw new PlayerException("Player name is too long (" + pp1.getName().length() + "/" + "20 characters)");
@@ -74,6 +75,9 @@ public class PlayerService {
         p2.setColor(pp2.getColor());
         p2.setSymbol(pp2.getSymbol());
         p2.setConfigured(true);
+
+        // Configure Computer
+        statusService.setComputer(computer);
     }
 
     /**
@@ -119,7 +123,7 @@ public class PlayerService {
     }
 
     /**
-     * Checks to ensure both players are updated
+     * Checks to ensure both players are configured
      * @return true/false
      */
     public boolean playersConfigured() {

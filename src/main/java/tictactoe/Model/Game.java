@@ -15,13 +15,31 @@ public class Game {
     private final Board board;
     private final Player p1;
     private final Player p2;
+    private boolean computer;
     private boolean completed;
 
     // Initialize board
     public Game() {
         board = new Board();
-        p1 = new Player("Player 1", "❌", "none", true);
-        p2 = new Player("Player 2", "⭕", "none", false);
+        p1 = new Player("", "❌", "none", true);
+        p2 = new Player("", "⭕", "none", false);
+        computer = false;
+    }
+
+    public boolean isComputer() {
+        return computer;
+    }
+
+    /**
+     * Updates computer & changes name / symbol if true
+     * @param computer computer status
+     */
+    public void setComputer(boolean computer) {
+        this.computer = computer;
+        if (computer) {
+            p2.setName("Computer");
+            p2.setSymbol("\uD83E\uDD16");
+        }
     }
 
     public boolean isCompleted() {

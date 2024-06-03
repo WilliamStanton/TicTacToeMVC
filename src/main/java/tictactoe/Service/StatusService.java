@@ -5,8 +5,10 @@ import org.springframework.web.context.annotation.RequestScope;
 import tictactoe.Model.Board.Board;
 import tictactoe.Model.Board.BoardSpot;
 import tictactoe.Model.Game;
+import tictactoe.Model.Player.Player;
 import tictactoe.Model.Status.GameStatus;
 import tictactoe.Model.Status.Winner;
+import tictactoe.Repository.LeaderboardRepository;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -19,10 +21,32 @@ import java.util.Arrays;
 public class StatusService {
     private final Board board;
     private final Game game;
+    private final LeaderboardRepository leaderboardRepository;
+    private final Player p1;
+    private final Player p2;
 
-    public StatusService(Board board, Game game) {
+    public StatusService(Board board, Game game, LeaderboardRepository leaderboardRepository, Player p1, Player p2) {
         this.board = board;
         this.game = game;
+        this.leaderboardRepository = leaderboardRepository;
+        this.p1 = p1;
+        this.p2 = p2;
+    }
+
+    /**
+     * Checks if the game is against a computer
+     * @return true/false
+     */
+    public boolean isComputer() {
+        return game.isComputer();
+    }
+
+    /**
+     * Updates the game computer status
+     * @param computer true/false
+     */
+    public void setComputer(boolean computer) {
+        game.setComputer(computer);
     }
 
     /**
@@ -49,8 +73,16 @@ public class StatusService {
         return gameStatus().isTie();
     }
 
-    public void setCompleted(boolean completed) {
-        game.setCompleted(completed);
+    /**
+     * Sets game to completed, and if completed & isn't a computer, handles win & loss in leaderboard
+     */
+    public void setCompleted(Winner winningPlayer) {
+        if (!game.isCompleted() && !isComputer() && winningPlayer.getPlayer() != null) {
+            leaderboardRepository.addWin(winningPlayer.getPlayer()); // add win
+            leaderboardRepository.addLoss(winningPlayer.getPlayer().equals(p1) ? p2 : p1); // add loss
+        }
+
+        game.setCompleted(true); // mark game completed
     }
 
     public boolean isCompleted() {
@@ -81,6 +113,7 @@ public class StatusService {
             }
             if (colFlag) {
                 winningBoardSpots.add(p);
+                setCompleted(new Winner(winningBoardSpots, p.getPlayer())); // mark game completed
                 return new GameStatus(new Winner(winningBoardSpots, p.getPlayer()));
             }
         }
@@ -101,6 +134,7 @@ public class StatusService {
             }
             if (colFlag) {
                 winningBoardSpots.add(p);
+                setCompleted(new Winner(winningBoardSpots, p.getPlayer())); // mark game completed
                 return new GameStatus(new Winner(winningBoardSpots, p.getPlayer()));
             }
         }
@@ -108,10 +142,12 @@ public class StatusService {
         // Check vertical
         if (bs[0][0].getPlayer().equals(bs[1][1].getPlayer())
                 && bs[1][1].getPlayer().equals(bs[2][2].getPlayer())) {
+            setCompleted(new Winner(winningBoardSpots, bs[0][0].getPlayer())); // mark game completed
             return new GameStatus(new Winner(new ArrayList<BoardSpot> (Arrays.asList(bs[0][0], bs[1][1], bs[2][2])), bs[0][0].getPlayer()));
         }
         if (bs[2][0].getPlayer().equals(bs[1][1].getPlayer())
                 && bs[1][1].getPlayer().equals(bs[0][2].getPlayer())) {
+            setCompleted(new Winner(winningBoardSpots, bs[2][0].getPlayer())); // mark game completed
             return new GameStatus(new Winner(new ArrayList<BoardSpot>(Arrays.asList(bs[2][0], bs[1][1], bs[0][2])), bs[2][0].getPlayer()));
         }
 
@@ -128,8 +164,10 @@ public class StatusService {
         }
 
         // Return tie status
-        if (tie)
+        if (tie) {
+            setCompleted(new Winner(winningBoardSpots, null)); // mark game completed
             return new GameStatus(true);
+        }
         else
             return new GameStatus(false);
     }

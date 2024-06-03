@@ -29,6 +29,10 @@ public class BoardSpot {
         this.player = player;
     }
 
+    public boolean isTaken() {
+        return player.getName() != null;
+    }
+
     public boolean isWinningSpot() {
         return winningSpot;
     }
