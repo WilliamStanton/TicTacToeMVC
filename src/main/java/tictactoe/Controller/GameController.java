@@ -127,7 +127,6 @@ public class GameController {
     public String gameProperties(@RequestParam String name1, @RequestParam String name2, @RequestParam String symbol1, @RequestParam String symbol2, @RequestParam String color1, @RequestParam String color2, @RequestParam(defaultValue = "false") boolean computer) throws PlayerException {
         // Configure players
         playerService.configurePlayers(new PlayerProperties(name1, symbol1, color1), new PlayerProperties(name2, symbol2, color2), computer);
-        if (computer) statusService.setComputer(true);
 
         // Redirect to game
         return "redirect:/";
