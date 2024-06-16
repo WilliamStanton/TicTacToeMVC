@@ -2,6 +2,7 @@ package tictactoe.Controller;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
+import org.springframework.boot.context.properties.bind.DefaultValue;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -124,13 +125,8 @@ public class GameController {
      */
     @PostMapping("/settings")
     public String gameProperties(@RequestParam String name1, @RequestParam String name2, @RequestParam String symbol1, @RequestParam String symbol2, @RequestParam String color1, @RequestParam String color2, @RequestParam(defaultValue = "false") boolean computer) throws PlayerException {
-        // Ensure both players have different names
-        if (name1.equalsIgnoreCase(name2))
-            throw new PlayerException("Both players have the same name, please pick a different name.");
-
         // Configure players
         playerService.configurePlayers(new PlayerProperties(name1, symbol1, color1), new PlayerProperties(name2, symbol2, color2), computer);
-        if (computer) statusService.setComputer(true); // toggle computer
 
         // Redirect to game
         return "redirect:/";
