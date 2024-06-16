@@ -63,6 +63,10 @@ public class PlayerService {
             throw new PlayerException("Player name is too long (" + pp1.getName().length() + "/" + "20 characters)");
         else if (pp2.getName().length() > 20)
             throw new PlayerException("Player name is too long (" + pp2.getName().length() + "/" + "20 characters)");
+        else if (pp1.getName().isEmpty() || pp2.getName().isEmpty() && !computer)  // Ensure both players have names
+            throw new PlayerException("Player names have not been set");
+        else if (pp1.getName().equalsIgnoreCase(pp2.getName())) // Ensure sure both players have different names
+            throw new PlayerException("Players have the same name");
 
         // Configure Player 1
         p1.setName(pp1.getName());

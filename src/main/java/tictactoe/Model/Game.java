@@ -21,8 +21,8 @@ public class Game {
     // Initialize board
     public Game() {
         board = new Board();
-        p1 = new Player("Player 1", "❌", "none", true);
-        p2 = new Player("Player 2", "⭕", "none", false);
+        p1 = new Player("", "❌", "none", true);
+        p2 = new Player("", "⭕", "none", false);
         computer = false;
     }
 
