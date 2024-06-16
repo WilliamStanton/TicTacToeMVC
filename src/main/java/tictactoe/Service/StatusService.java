@@ -21,14 +21,14 @@ import java.util.Arrays;
 public class StatusService {
     private final Board board;
     private final Game game;
-    private final LeaderboardRepository leaderboardRepository;
+    private final LeaderboardService leaderboardService;
     private final Player p1;
     private final Player p2;
 
-    public StatusService(Board board, Game game, LeaderboardRepository leaderboardRepository, Player p1, Player p2) {
+    public StatusService(Board board, Game game, LeaderboardService leaderboardService, Player p1, Player p2) {
         this.board = board;
         this.game = game;
-        this.leaderboardRepository = leaderboardRepository;
+        this.leaderboardService = leaderboardService;
         this.p1 = p1;
         this.p2 = p2;
     }
@@ -78,8 +78,8 @@ public class StatusService {
      */
     public void setCompleted(Winner winningPlayer) {
         if (!game.isCompleted() && !isComputer() && winningPlayer.getPlayer() != null) {
-            leaderboardRepository.addWin(winningPlayer.getPlayer()); // add win
-            leaderboardRepository.addLoss(winningPlayer.getPlayer().equals(p1) ? p2 : p1); // add loss
+            leaderboardService.addWin(winningPlayer.getPlayer()); // add win
+            leaderboardService.addLoss(winningPlayer.getPlayer().equals(p1) ? p2 : p1); // add loss
         }
 
         game.setCompleted(true); // mark game completed

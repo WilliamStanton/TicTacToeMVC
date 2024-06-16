@@ -35,11 +35,16 @@ button {
     background-color: transparent;
 }
 
+select {
+    border-radius: 6px;
+    border: transparent;
+}
+
 .modalParent {
     display: flex;
     flex-direction: column;
     align-items: center;
-    min-width: 360px;
+    max-width: 360px;
 }
 
 .modalParent .modalHead {

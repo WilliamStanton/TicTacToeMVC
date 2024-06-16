@@ -19,13 +19,14 @@
 }
 
 /* Inactive Game */
-.inactiveGame {
+.gameMessage {
     background-color: #bebcbc;
     padding: 16px;
     border-radius: 12px;
+    margin: 0 12px;
 }
 
-.inactiveGame p {
+.gameMessage p {
     font-size: 20px;
 }
 
