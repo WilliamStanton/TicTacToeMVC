@@ -33,6 +33,10 @@ public class StatusService {
         this.p2 = p2;
     }
 
+    public void reset() {
+        game.reset();
+    }
+
     /**
      * Checks if the game is against a computer
      * @return true/false

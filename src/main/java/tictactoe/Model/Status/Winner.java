@@ -1,5 +1,6 @@
 package tictactoe.Model.Status;
 
+import lombok.Getter;
 import tictactoe.Model.Board.BoardSpot;
 import tictactoe.Model.Player.Player;
 
@@ -8,6 +9,7 @@ import java.util.ArrayList;
 /**
  * Defines the winner
  */
+@Getter
 public class Winner {
     private Player player;
     private final boolean won;
@@ -25,13 +27,5 @@ public class Winner {
     // Winner not found constructor
     public Winner() {
         this.won = false;
-    }
-
-    public boolean isWon() {
-        return won;
-    }
-
-    public Player getPlayer() {
-        return player;
     }
 }

@@ -1,6 +1,7 @@
 package tictactoe.Model.Player;
 
 
+import lombok.Data;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Column;
 import org.springframework.data.relational.core.mapping.Table;
@@ -9,6 +10,7 @@ import org.springframework.data.relational.core.mapping.Table;
  * Represents player statistics
  */
 @Table("statistics")
+@Data
 public class Statistics {
     @Id
     private int id;
@@ -23,47 +25,5 @@ public class Statistics {
         this.name = name;
         this.wins = 0;
         this.losses = 0;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public int getWins() {
-        return wins;
-    }
-
-    public void setWins(int wins) {
-        this.wins = wins;
-    }
-
-    public int getLosses() {
-        return losses;
-    }
-
-    public void setLosses(int losses) {
-        this.losses = losses;
-    }
-
-    @Override
-    public String toString() {
-        return "Statistics{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", wins=" + wins +
-                ", losses=" + losses +
-                '}';
     }
 }

@@ -2,7 +2,6 @@ package tictactoe.Controller;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
-import org.springframework.boot.context.properties.bind.DefaultValue;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -153,19 +152,7 @@ public class GameController {
      */
     @PostMapping("/restart")
     public String restartGame(HttpServletRequest request, HttpSession session) throws PlayerException {
-        // Save current session Player Properties
-        var pp1t = new PlayerProperties(p1.getName(), p1.getSymbol(), p1.getColor());
-        var pp2t = new PlayerProperties(p2.getName(), p2.getSymbol(), p2.getColor());
-        boolean computer = statusService.isComputer();
-
-        // Invalidate Current Session
-        session.invalidate();
-
-        // Create new Session
-        var newSession = request.getSession();
-
-        // Configure players from prior session
-        playerService.configurePlayers(pp1t, pp2t, computer);
+        statusService.reset();
 
         // Send user to game
         return "redirect:/";

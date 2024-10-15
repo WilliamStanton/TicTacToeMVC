@@ -1,8 +1,13 @@
 package tictactoe.Model.Player;
 
+import lombok.Getter;
+import lombok.Setter;
+
 /**
  * Defines a player
  */
+@Getter
+@Setter
 public class Player {
     private String name;
     private String symbol;
@@ -17,46 +22,6 @@ public class Player {
         this.symbol = symbol;
         this.color = color;
         this.configured = false;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getSymbol() {
-        return symbol;
-    }
-
-    public void setSymbol(String symbol) {
-        this.symbol = symbol;
-    }
-
-    public boolean isTurn() {
-        return isTurn;
-    }
-
-    public void setTurn(boolean turn) {
-        isTurn = turn;
-    }
-
-    public String getColor() {
-        return color;
-    }
-
-    public void setColor(String color) {
-        this.color = color;
-    }
-
-    public boolean isConfigured() {
-        return configured;
-    }
-
-    public void setConfigured(boolean configured) {
-        this.configured = configured;
     }
 
     @Override

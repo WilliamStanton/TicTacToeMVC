@@ -1,8 +1,11 @@
 package tictactoe.Model.Status;
 
+import lombok.Getter;
+
 /**
  * Defines the game status
  */
+@Getter
 public class GameStatus {
     private final Winner winner;
     private final boolean tie;
@@ -17,13 +20,5 @@ public class GameStatus {
     public GameStatus(boolean tie) {
         this.winner = new Winner();
         this.tie = tie;
-    }
-
-    public Winner getWinner() {
-        return winner;
-    }
-
-    public boolean isTie() {
-        return tie;
     }
 }

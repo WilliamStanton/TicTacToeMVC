@@ -1,5 +1,7 @@
 package tictactoe.Model;
 
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.annotation.SessionScope;
@@ -15,7 +17,9 @@ public class Game {
     private final Board board;
     private final Player p1;
     private final Player p2;
+    @Getter @Setter
     private boolean computer;
+    @Getter @Setter
     private boolean completed;
 
     // Initialize board
@@ -26,28 +30,13 @@ public class Game {
         computer = false;
     }
 
-    public boolean isComputer() {
-        return computer;
-    }
-
     /**
-     * Updates computer & changes name / symbol if true
-     * @param computer computer status
+     * Resets game (players and board)
      */
-    public void setComputer(boolean computer) {
-        this.computer = computer;
-        if (computer) {
-            p2.setName("Computer");
-            p2.setSymbol("\uD83E\uDD16");
-        }
-    }
-
-    public boolean isCompleted() {
-        return completed;
-    }
-
-    public void setCompleted(boolean completed) {
-        this.completed = completed;
+    public void reset() {
+        p1.setTurn(true);
+        p2.setTurn(false);
+        board.initializeSpots();
     }
 
     @Bean("board")

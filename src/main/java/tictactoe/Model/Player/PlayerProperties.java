@@ -1,5 +1,7 @@
 package tictactoe.Model.Player;
 
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.annotation.SessionScope;
 
@@ -8,6 +10,8 @@ import org.springframework.web.context.annotation.SessionScope;
  */
 @Component
 @SessionScope
+@Getter
+@Setter
 public class PlayerProperties {
     private String name;
     private String symbol;
@@ -25,29 +29,5 @@ public class PlayerProperties {
         this.name = name;
         this.symbol = symbol;
         this.color = color;
-    }
-
-    public String getSymbol() {
-        return symbol;
-    }
-
-    public String getColor() {
-        return color;
-    }
-
-    public void setSymbol(String symbol) {
-        this.symbol = symbol;
-    }
-
-    public void setColor(String color) {
-        this.color = color;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 }

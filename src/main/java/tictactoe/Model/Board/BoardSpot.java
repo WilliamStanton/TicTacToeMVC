@@ -1,10 +1,15 @@
 package tictactoe.Model.Board;
 
+import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 import tictactoe.Model.Player.Player;
 
 /**
  * Defines a board spot
  */
+@Getter
+@Setter
 public class BoardSpot {
     private final int id;
     private boolean winningSpot;
@@ -17,33 +22,8 @@ public class BoardSpot {
         this.player = new Player(null, null, "", false);
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public Player getPlayer() {
-        return player;
-    }
-
-    public void setPlayer(Player player) {
-        this.player = player;
-    }
-
     public boolean isTaken() {
         return player.getName() != null;
-    }
-
-    public boolean isWinningSpot() {
-        return winningSpot;
-    }
-
-    public void setWinningSpot(boolean winningSpot) {
-        this.winningSpot = winningSpot;
-    }
-
-    @Override
-    public String toString() {
-        return String.valueOf(id);
     }
 }
 
